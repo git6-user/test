@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginxpod
+  labels:
+    key: nginx-pod
+spec:
+  containers:
+    - name: nginx-pod-fromfile
+      image: 815772304273.dkr.ecr.us-east-1.amazonaws.com/repo1:1.0.0
+      ports:
+        - containerPort: 80
