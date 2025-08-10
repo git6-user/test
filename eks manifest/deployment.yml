@@ -1,0 +1,30 @@
+#deployment creation
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-deployment-pod
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment-pod
+    spec:
+      containers:
+      - name: nginx-pod
+        image: 815772304273.dkr.ecr.us-east-1.amazonaws.com/repo1:1.0.0
+        ports:
+          - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+            
