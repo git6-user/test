@@ -16,3 +16,33 @@ output "instance_ip" {
     value = aws_instance.test[*].public_ip # generalized splat operator
 
 }
+
+output "vpc1" {
+    value = aws_vpc.vpc1.id
+  
+}
+
+output "vpc2" {
+    value = aws_vpc.vpc2.id
+  
+}
+
+output "vpc3" {
+    value = aws_vpc.vpc3.id
+  
+}
+
+output "vpc1-subn1" {
+    value = aws_subnet.private_subnet1.id 
+  
+}
+
+output "vpc1-subn2" {
+    value = aws_subnet.private_subnet2.id 
+  
+}
+
+output "vpc1-subn3" {
+    value = aws_subnet.private_subnet3.id 
+  
+}
