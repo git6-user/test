@@ -46,4 +46,14 @@ variable "vpcindex" {
   type    = number
   default = 0
 }
+# Control to run required resourse module
+variable "run_required_resourse_module" {
+  type    = bool
+  default = true
+}
+
+variable "prevent_destroy" {
+  type    = bool
+  default = true
+}
 

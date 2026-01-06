@@ -62,3 +62,11 @@ output "private_subnet_ids" {
     for k, v in data.aws_subnets.private : k => v.ids
   }
 }
+
+output "s3_bucket" {
+  value = module.s3_bucket.s3_bucket_id
+}
+
+output "dynamodb_table_name" {
+  value = module.dynamodb_table.dynamodb_table_id
+}

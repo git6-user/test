@@ -7,10 +7,10 @@ data "aws_availability_zones" "region" {
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "6.5.1"
-  count   = length(var.vpc_cidrs)
+  count   = length(var.vpc_cidrs) 
 
   name = "Private-${count.index + 1}"
-  cidr = var.vpc_cidrs[count.index]
+  cidr = var.vpc_cidrs[count.index] 
 
   azs             = slice(data.aws_availability_zones.region.names, 0, var.required_avilability_zone)
   # in the beelow line for subnet 8,1 refer to /16,second octate of cidr block
