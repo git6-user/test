@@ -75,6 +75,6 @@ output "transit_gateway_id" {
   value = module.tgw.ec2_transit_gateway_id
 }
 
-output "transit_gateway_id" {
+output "vpc_id" {
   value = module.vpc.vpc_ids
 }
