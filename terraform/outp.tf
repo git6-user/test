@@ -47,9 +47,9 @@
   
 #}
 
-output "vpc_ids" {
-  value = data.aws_vpcs.my-vpcs[*].id
-}
+# output "vpc_ids" {
+#   value = data.aws_vpcs.my-vpcs[*].id
+# }
 
 output "public_subnet_ids" {
   value = {
