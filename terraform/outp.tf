@@ -72,5 +72,5 @@ output "dynamodb_table_name" {
 }
 
 output "transit_gateway_id" {
-  value = aws_ec2_transit_gateway.tgw.id
+  value = module.aws_ec2_transit_gateway.tgw.id
 }
