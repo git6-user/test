@@ -3,7 +3,7 @@ module "ec2" {
   version = "6.1.5"
   #count = min(var.public_instances_per_vpc, local.max_public_instances)
   
-  for_each = locals.subnet_map
+  for_each = local.subnet_map
 
   name = "instance-${each.key}"
 
