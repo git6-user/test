@@ -8,7 +8,7 @@ module "ec2" {
   name = "instance-${each.key}"
 
   instance_type = var.map[var.environment]
-  key_name      = "eks_keypair"
+  key_name      = "pair"
   subnet_id     = each.value.subnet_id
   associate_public_ip_address = each.value.type == "public"
   create_eip = each.value.type == "public" ? true : false
