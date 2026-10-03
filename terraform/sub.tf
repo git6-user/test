@@ -22,32 +22,32 @@ data "aws_subnet" "vpcsubnet" {
   id = each.value
 } 
 
-# # Get public subnets for each VPC
-# data "aws_subnets" "public" {
-#   for_each = data.aws_vpc.vpc
+# Get public subnets for each VPC
+data "aws_subnets" "public" {
+  for_each = data.aws_vpc.vpc
 
-#   filter {
-#     name   = "vpc-id"
-#     values = [each.value.id]
-#   }
+  filter {
+    name   = "vpc-id"
+    values = [each.value.id]
+  }
 
-#   filter {
-#     name   = "tag:Type"
-#     values = ["*plc"]
-#   }
-# }
+  filter {
+    name   = "tag:Type"
+    values = ["*plc"]
+  }
+}
 
-# # Get private subnets for each VPC
-# data "aws_subnets" "private" {
-#   for_each = data.aws_vpc.vpc
+# Get private subnets for each VPC
+data "aws_subnets" "private" {
+  for_each = data.aws_vpc.vpc
 
-#   filter {
-#     name   = "vpc-id"
-#     values = [each.value.id]
-#   }
+  filter {
+    name   = "vpc-id"
+    values = [each.value.id]
+  }
 
-#   filter {
-#     name   = "tag:Type"
-#     values = ["*prvt"]
-#   }
-# }
+  filter {
+    name   = "tag:Type"
+    values = ["*prvt"]
+  }
+}
