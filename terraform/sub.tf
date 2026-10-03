@@ -24,7 +24,7 @@ data "aws_subnet" "vpcsubnet" {
 
 # Get public subnets for each VPC
 data "aws_subnets" "public" {
-  for_each = data.aws_vpc.vpc
+  for_each = data.aws_vpc.my-vpc
 
   filter {
     name   = "vpc-id"
@@ -39,7 +39,7 @@ data "aws_subnets" "public" {
 
 # Get private subnets for each VPC
 data "aws_subnets" "private" {
-  for_each = data.aws_vpc.vpc
+  for_each = data.aws_vpc.my-vpc
 
   filter {
     name   = "vpc-id"
