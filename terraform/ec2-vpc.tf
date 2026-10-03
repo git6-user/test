@@ -1,26 +1,27 @@
-terraform {
-    required_version = "~> 1.0.0"
-    required_providers {
-        aws = {
-            source  = "hashicorp/aws"
-            version = "~> 3.0"
-        }
-    }
-}
-provider "aws" {
-    region = "us-east-1"
-}
-resource "aws_instance" "test" {
-    ami = data.aws_ami.latest_amazon_linux
-    #instance_type = var.list[0] # Using the list variable for instance type
-    instance_type = var.map.prod # Using the map variable for instance type
-    key_name = "eks-keypair"
-    vpc_security_group_ids = [awsaws_security_group.vpc-sg.id, aws_security_group.vpc-web-sg.id]
-    count = 2
-    tags = {
-        Name = "PrivateInstance-${count.index}"
-    }
-}
+module "ec2" {
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "6.1.5"
+  #count = min(var.public_instances_per_vpc, local.max_public_instances)
+  
+  for_each = locals.subnet_map
 
+  name = "instance-${each.key}"
 
+  instance_type = var.map[var.environment]
+  key_name      = "eks_keypair"
+  subnet_id     = each.value.subnet_id
+  associate_public_ip_address = each.value.type == "public"
+  create_eip = each.value.type == "public" ? true : false
+
+  vpc_security_group_ids = each.value.type == "public" ? [
+    aws_security_group.vpc-web-sg-pub[each.value.vpc_index].id
+  ] : [
+    aws_security_group.vpc-sg-pri[each.value.vpc_index].id
+  ]
+
+  tags = {
+    Name = "${each.value.type}-ec2-vpc-${each.value.vpc_index}-${each.key}"
+    Type = each.value.type
+}
+}
 
