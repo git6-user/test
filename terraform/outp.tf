@@ -70,3 +70,7 @@ output "s3_bucket" {
 output "dynamodb_table_name" {
   value = module.dynamodb_table.dynamodb_table_id
 }
+
+output "transit_gateway_id" {
+  value = aws_ec2_transit_gateway.tgw.id
+}
